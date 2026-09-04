@@ -47,16 +47,3 @@
 .carousel-control-next-icon {
     padding: 20px; /* Agranda un poco la flecha */
 }
-/*estilo de el boton submit de los formularios */
-.btn_submit{
-    background-color: #2E8C42 !important;
-    color: white !important;
-    border: none !important;
-    transition: all 0.3s ease-in-out !important;
-}
-.btn_submit:hover{
-    background-color: #1E5C2A !important;
-    color: white !important;
-    border: none !important;
-    transform: translateY(-3px);
-}
