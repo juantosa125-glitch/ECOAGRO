@@ -18,7 +18,9 @@
 
 /* También es importante quitarlo cuando el botón recibe foco (clic o tabulador) */
 .navbar-toggler:focus,
-.navbar-toggler:active {t;
+.navbar-toggler:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
  /*estilos para el contenido de la página */
 
