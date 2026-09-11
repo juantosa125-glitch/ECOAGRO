@@ -191,3 +191,8 @@
 09-Sep-2026 19:50:29.392 ADVERTENCIA [http-nio-8080-exec-39] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [C:\Users\juant\Documents\ECOAGRO\apache-tomcat-11.0.25\conf\Catalina\localhost\ROOT.xml] has been ignored
 09-Sep-2026 19:50:29.417 INFORMACIÓN [http-nio-8080-exec-39] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [C:\Users\juant\Documents\ECOAGRO\apache-tomcat-11.0.25\conf\Catalina\localhost\ROOT.xml] has finished in [25] ms
 09-Sep-2026 19:50:29.419 INFORMACIÓN [http-nio-8080-exec-40] org.apache.catalina.util.LifecycleBase.start The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[]] after start() had already been called. The second call will be ignored.
+09-Sep-2026 20:58:11.051 INFORMACIÓN [main] org.apache.catalina.core.StandardServer.await Se ha recibido un comando de apagado a través del puerto de apagado. Parando la instancia del Servidor.
+09-Sep-2026 20:58:11.053 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+09-Sep-2026 20:58:11.059 INFORMACIÓN [main] org.apache.catalina.core.StandardService.stopInternal Parando servicio [Catalina]
+09-Sep-2026 20:58:11.072 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+09-Sep-2026 20:58:11.086 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]

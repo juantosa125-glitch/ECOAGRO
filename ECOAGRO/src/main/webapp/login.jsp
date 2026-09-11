@@ -12,7 +12,7 @@
 <nav class="navbar_main navbar navbar-expand-md bg-body-tertiary">
     <div class="container">
     <!-- Logo de la empresa -->
-        <a class="navbar-brand" href="index.html"><img src="imagenes/logo Ecoagro.jpg" alt="logo ecoagro" width="50" height="50" class="rounded-2"></a>
+        <a class="navbar-brand" href="index.jsp"><img src="imagenes/logo Ecoagro.jpg" alt="logo ecoagro" width="50" height="50" class="rounded-2"></a>
     <!-- Barra de bÃºsqueda -->
         <nav class="navbar bg-body-tertiary rounded-2 order-3 order-sm-0">
         <div class="container">
@@ -33,7 +33,7 @@
             <a class="text_nav nav-link" href="products/catalogo_productos.html">catalogo</a>
         </li>
         <li class="nav-item">
-            <a class="text_nav nav-link" href="register.html">crear cuenta</a>
+            <a class="text_nav nav-link" href="sign_up.jsp">crear cuenta</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="products/shopping_cart.html"><img src="imagenes/carrito-de-compras.png" alt="carrito_de_compras" width="20" height="20"></a>
@@ -48,44 +48,38 @@
 </nav>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-
-
-        
-<!-- El recuadro del login -->
+<div class="container d-flex justify-content-center align-items-center vh-100">        
     <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
         <div class="card-body">
         <h3 class="text-center mb-4">Iniciar Sesión</h3>
-        <%-- Validamos si existe el atributo de error enviado desde el Servlet --%>
             <% 
                 String error = (String) request.getAttribute("errorAuth"); 
                 if (error != null) { 
             %>
-        <!-- Usamos las clases de Bootstrap para mostrar un cuadro de alerta rojo -->
             <div class="alert alert-danger text-center mb-3" role="alert">
             <%= error %>
             </div>
         <% } %>
         <form action="login" method="POST">
-        <!-- Campo de Correo -->
+        <!-- Campo combinado de Correo o Celular -->
             <div class="mb-3">
-                <label for="inputCorreo" class="form-label">Correo Electronico</label>
-                <input type="email" class="form-control" name= "email" id="inputCorreo" placeholder="ejemplo@correo.com" required>
+                <label for="inputIdentifier" class="form-label">Correo o Celular</label>
+                <input type="text" class="form-control" name="identifier" id="inputIdentifier" placeholder="ejemplo@correo.com o 3201234567" pattern="[a-zA-Z0-9@._-]+" title="Ingresa tu correo o un número de celular sin espacios ni signos extraños" required>
             </div>
         
-        <!-- Campo de ContraseÃ±a -->
+        <!-- Campo de Contraseña -->
             <div class="mb-4">
                 <label for="inputPassword" class="form-label">Contraseña</label>
                 <input type="password" class="form-control" name="password" id="inputPassword" placeholder="********" required>
             </div>
         
-        <!-- BotÃ³n de Ingresar -->
+        <!-- Botón de Ingresar -->
             <div class="d-grid">
                 <button type="submit" class="btn_submit btn btn-primary">Ingresar</button>
             </div>
         </form>
         </div>
     </div>
-    </div>
+</div>
 </body>
 </html>

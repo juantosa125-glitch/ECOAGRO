@@ -12,7 +12,7 @@
     <nav class="navbar_main navbar navbar-expand-md bg-body-tertiary">
         <div class="container">
             <!-- Logo de la empresa -->
-            <a class="navbar-brand" href="index.html"><img src="imagenes/logo Ecoagro.jpg" alt="logo ecoagro" width="50" height="50" class="rounded-2"></a>
+            <a class="navbar-brand" href="index.jsp "><img src="imagenes/logo Ecoagro.jpg" alt="logo ecoagro" width="50" height="50" class="rounded-2"></a>
             <!-- Barra de búsqueda -->
             <nav class="navbar bg-body-tertiary rounded-2 order-3 order-sm-0">
                 <div class="container">
@@ -26,7 +26,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <img src="imagenes/icono-collapse.png" alt="menu" width="50" height="50"></button>
         </button>
-        <!-- Enlaces de navegación -->
+        <!-- Enlaces de navegacion -->
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
@@ -36,7 +36,7 @@
                     <a class="text_nav nav-link" href="login.jsp">login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="text_nav nav-link" href="register.html">crear cuenta</a>
+                    <a class="text_nav nav-link" href="sign_up.jsp">crear cuenta</a>
                 </li>
                 <li class="nav-item">
             <a class="nav-link" href="products/shopping_cart.html"><img src="imagenes/carrito-de-compras.png" alt="carrito_de_compras" width="20" height="20"></a>

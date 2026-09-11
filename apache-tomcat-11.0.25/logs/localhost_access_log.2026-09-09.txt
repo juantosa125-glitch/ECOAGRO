@@ -224,3 +224,9 @@
 127.0.0.1 - - [09/Sep/2026:20:08:53 -0500] "GET /imagenes/imagen_ejemplo_producto_3.jpg HTTP/1.1" 304 -
 127.0.0.1 - - [09/Sep/2026:20:08:53 -0500] "GET /imagenes/imagen_ejemplo_producto_2.jpg HTTP/1.1" 304 -
 127.0.0.1 - - [09/Sep/2026:20:08:53 -0500] "GET /imagenes/imagen_ejemplo_producto_4.jpg HTTP/1.1" 304 -
+127.0.0.1 - - [09/Sep/2026:20:58:10 -0500] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - ecoagro_admin [09/Sep/2026:20:58:10 -0500] "GET /manager/text/ HTTP/1.1" 200 44
+127.0.0.1 - - [09/Sep/2026:20:58:10 -0500] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - ecoagro_admin [09/Sep/2026:20:58:10 -0500] "GET /manager/text/ HTTP/1.1" 200 44
+127.0.0.1 - - [09/Sep/2026:20:58:10 -0500] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - ecoagro_admin [09/Sep/2026:20:58:10 -0500] "GET /manager/text/ HTTP/1.1" 200 44
