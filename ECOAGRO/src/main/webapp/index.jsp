@@ -1,68 +1,77 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoAgro - Tu Mercado del Campo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<!-- Navbar -->
 <body>
+<!-- Navbar -->
     <nav class="navbar_main navbar navbar-expand-md bg-body-tertiary">
         <div class="container">
             <!-- Logo de la empresa -->
-            <a class="navbar-brand" href="index.jsp "><img src="imagenes/logo Ecoagro.jpg" alt="logo ecoagro" width="50" height="50" class="rounded-2"></a>
-            <!-- Barra de bÃºsqueda -->
-            <nav class="navbar bg-body-tertiary rounded-2 order-3 order-sm-0">
-                <div class="container">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2 rounded-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button class="btn btn-outline-success" type="submit"><img class="my-auto" src="imagenes/lupa.png" alt="Buscar" width="20" height="20"></button>
-                    </form>
-                </div>
-        </nav>
-        <!-- BotÃ³n para colapsar el menÃº en pantallas pequeÃ±as -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <img src="imagenes/icono-collapse.png" alt="menu" width="50" height="50"></button>
-        </button>
-        <!-- Enlaces de navegacion -->
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="text_nav nav-link" href="products/catalogo_productos.html">catalogo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="text_nav nav-link" href="login.jsp">login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="text_nav nav-link" href="sign_up.jsp">crear cuenta</a>
-                </li>
-                <li class="nav-item">
-            <a class="nav-link" href="products/shopping_cart.html"><img src="imagenes/carrito-de-compras.png" alt="carrito_de_compras" width="20" height="20"></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="products/configuracion.html"><img src="imagenes/configuracion.png" alt="configuracion" width="20" height="20"></a>
-        </li>
-    </ul>
-</div>
+            <a class="navbar-brand" href="index.jsp">
+                <img src="imagenes/logo Ecoagro.jpg" alt="logo ecoagro" width="50" height="50" class="rounded-2">
+            </a>
 
-</div>
-</nav>
+            <!-- Barra de búsqueda -->
+            <div class="rounded-2 order-3 order-sm-0 my-2 my-sm-0">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 rounded-2" type="search" placeholder="Buscar productos..." aria-label="Search"/>
+                    <button class="btn btn-outline-success" type="submit">
+                        <img class="my-auto" src="imagenes/lupa.png" alt="Buscar" width="20" height="20">
+                    </button>
+                </form>
+            </div>
 
+            <!-- Botón para colapsar el menú en pantallas pequeñas -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="imagenes/icono-collapse.png" alt="menu" width="50" height="50">
+            </button>
 
-<!-- Contenido principal de la pÃ¡gina -->
+            <!-- Enlaces de navegación -->
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="text_nav nav-link" href="products/catalogo_productos.html">catalogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="text_nav nav-link" href="login.jsp">login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="text_nav nav-link" href="sign_up.jsp">crear cuenta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products/shopping_cart.html">
+                            <img src="imagenes/carrito-de-compras.png" alt="carrito_de_compras" width="20" height="20">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products/configuracion.html">
+                            <img src="imagenes/configuracion.png" alt="configuracion" width="20" height="20">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<!-- Contenido principal de la página -->
 <div id="carruselProductos" class="carousel slide container mt-5 position-relative" data-bs-ride="carousel" style="max-width: 1200px;">
     
-    <div class="carousel-inner px-5"> <div class="carousel-item active">
-            <div class="row g-3 justify-content-center"> <div class="col-md-4 d-flex justify-content-center">
+    <div class="carousel-inner px-5"> 
+        <div class="carousel-item active">
+            <div class="row g-3 justify-content-center"> 
+                <div class="col-md-4 d-flex justify-content-center">
                     <div class="target_product card shadow-sm border-0 rounded-3 p-2" style="width: 18rem;">
                         <a href="products/pagina_producto.html" class="text-decoration-none text-dark">
                             <img src="imagenes/imagen_ejemplo_producto_1.jpg" class="card-img-top img-fluid" alt="Nutrimon">
                             <div class="card-body text-center">
                                 <h5 class="card-title fw-bold">Producto de Ejemplo</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Precio: $XX.XX</h6>
-                                <p class="card-text text-muted small">DescripciÃ³n del producto.</p>
+                                <p class="card-text text-muted small">Descripción del producto.</p>
                             </div>
                         </a>
                     </div>
@@ -75,7 +84,7 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title fw-bold">Producto de Ejemplo</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Precio: $XX.XX</h6>
-                                <p class="card-text text-muted small">DescripciÃ³n del producto.</p>
+                                <p class="card-text text-muted small">Descripción del producto.</p>
                             </div>
                         </a>
                     </div>
@@ -88,13 +97,15 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title fw-bold">Producto de Ejemplo</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Precio: $XX.XX</h6>
-                                <p class="card-text text-muted small">DescripciÃ³n del producto.</p>
+                                <p class="card-text text-muted small">Descripción del producto.</p>
                             </div>
                         </a>
                     </div>
                 </div>
+            </div> 
+        </div> 
 
-            </div> </div> <div class="carousel-item">
+        <div class="carousel-item">
             <div class="row g-3 justify-content-center">
                 
                 <div class="col-md-4 d-flex justify-content-center">
@@ -104,13 +115,17 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title fw-bold">Producto de Ejemplo</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Precio: $XX.XX</h6>   
-                                <p class="card-text text-muted small">DescripciÃ³n del producto.</p>
+                                <p class="card-text text-muted small">Descripción del producto.</p>
                             </div>
                         </a>
                     </div>
                 </div>
 
-                </div> </div> </div> <button class="carousel-control-prev" type="button" data-bs-target="#carruselProductos" data-bs-slide="prev" style="width: 5%;">
+            </div> 
+        </div> 
+    </div> 
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carruselProductos" data-bs-slide="prev" style="width: 5%;">
         <span class="carousel-control-prev-icon bg-secondary rounded-circle shadow" aria-hidden="true"></span>
         <span class="visually-hidden">Anterior</span>
     </button>
@@ -119,7 +134,7 @@
         <span class="visually-hidden">Siguiente</span>
     </button>
 
-</div> ```
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
