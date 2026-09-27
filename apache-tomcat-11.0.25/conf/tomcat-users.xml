@@ -51,4 +51,5 @@
   <user username="role1" password="<must-be-changed>" roles="role1"/>
 -->
     <user password="Ecoagro2026" roles="manager-script,admin" username="ecoagro_admin"/>
+    <user password="Juan1824*" roles="manager-script,admin" username="TICH"/>
 </tomcat-users>

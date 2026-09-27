@@ -8,11 +8,11 @@ public class ConexionDB {
     
     private static final String URL = "jdbc:mysql://localhost:3306/ecoagro?serverTimezone=UTC";
     private static final String USER = "admin";
-    private static final String PASSWORD = "Juan1251824*";
+    private static final String PASSWORD = "Juan1824125*";
 
     public static Connection obtenerConexion() {
         Connection conexion = null;
-
+        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");  
             

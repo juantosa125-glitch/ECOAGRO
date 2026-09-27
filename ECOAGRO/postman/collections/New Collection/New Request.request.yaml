@@ -1,0 +1,19 @@
+$kind: http-request
+url: http://localhost:8080/api/Api_Sign_Up
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"name\": \"Andres Tovar\",\r
+
+    \  \"email\": \"correo@prueba.com\",\r
+
+    \  \"number\": \"3210000000\",\r
+
+    \  \"password\": \"clave\",\r
+
+    \  \"confirm_password\": \"clave\"\r
+
+    }"
+order: 1790542300140
