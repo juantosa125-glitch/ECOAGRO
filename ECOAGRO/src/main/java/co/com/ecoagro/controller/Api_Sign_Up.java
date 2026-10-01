@@ -18,13 +18,13 @@ public class Api_Sign_Up extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1. Le decimos a Postman que le vamos a responder con un JSON
+        // Se le dice a Postman que le vamos a responder con un JSON
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         var out = response.getWriter();
 
         try {
-            // 2. LEER EL TEXTO JSON QUE ESCRIBISTE EN POSTMAN
+            // Leer el JSON
             BufferedReader reader = request.getReader();
             Gson gson = new Gson();
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
@@ -35,14 +35,14 @@ public class Api_Sign_Up extends HttpServlet {
                 return;
             }
 
-            // 3. Extraer las variables del JSON recibido
+            // Extraer las variables del JSON recibido
             String nombre = jsonObject.has("name") ? jsonObject.get("name").getAsString() : "";
             String correo = jsonObject.has("email") ? jsonObject.get("email").getAsString() : "";
             String celular = jsonObject.has("number") ? jsonObject.get("number").getAsString() : "";
             String password = jsonObject.has("password") ? jsonObject.get("password").getAsString() : "";
             String confirmPassword = jsonObject.has("confirm_password") ? jsonObject.get("confirm_password").getAsString() : "";
 
-            // 4. EJECUTAR TUS VALIDACIONES
+            // Ejecutar validaciones
             if (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
                 out.print("{\"error\": \"El nombre solo debe contener letras.\"}");
@@ -61,8 +61,7 @@ public class Api_Sign_Up extends HttpServlet {
                 return;
             }
 
-            // Si pasa todas las validaciones (aquí iría tu código de base de datos de EcoAgro)
-            // Por ahora, solo confirmamos que la validación fue un éxito:
+            // Si pasa todas las validaciones
             response.setStatus(HttpServletResponse.SC_OK); // 200
             out.print("{\"mensaje\": \"Validación exitosa. Los datos son correctos.\"}");
             
