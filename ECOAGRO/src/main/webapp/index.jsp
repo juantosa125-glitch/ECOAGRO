@@ -38,10 +38,10 @@
                         <a class="text_nav nav-link" href="products/catalogo_productos.html">catalogo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="text_nav nav-link" href="login.jsp">login</a>
+                        <a class="text_nav nav-link" href="Login-SignUp/login.jsp">login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="text_nav nav-link" href="sign_up.jsp">crear cuenta</a>
+                        <a class="text_nav nav-link" href="Login-SignUp/sign_up.jsp">crear cuenta</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="products/shopping_cart.html">
