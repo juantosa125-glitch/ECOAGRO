@@ -3,52 +3,1144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoAgro - Tu Mercado del Campo</title>
+    <title>EcoAgro - Panel Administrativo y de Seguridad</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../style.css">
-</head> 
+    <style>
+        body {
+            background-color: #f4f6f8;
+        }
+
+        .panel-titulo {
+            color: #2E8C42;
+            font-weight: 700;
+        }
+
+        .navbar-ecoagro {
+            background-color: #ffffff;
+            border-bottom: 2px solid #2E8C42;
+        }
+
+        .card-custom {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5rem;
+            background-color: #ffffff;
+        }
+
+        .card-custom .card-header {
+            background-color: #2E8C42;
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 10px 10px 0 0 !important;
+        }
+
+        .card-metrica {
+            border-left: 5px solid #2E8C42;
+        }
+
+        .btn-verde {
+            background-color: #2E8C42;
+            border-color: #2E8C42;
+            color: #ffffff;
+        }
+
+        .btn-verde:hover {
+            background-color: #236b32;
+            border-color: #236b32;
+            color: #ffffff;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: #2E8C42;
+            font-weight: 600;
+            border-bottom: 3px solid #2E8C42;
+        }
+
+        .nav-tabs .nav-link {
+            color: #495057;
+        }
+
+        .badge-activo {
+            background-color: #198754;
+        }
+
+        .badge-suspendido {
+            background-color: #dc3545;
+        }
+
+        .badge-superadmin {
+            background-color: #2E8C42;
+        }
+
+        .badge-seguridad {
+            background-color: #0d6efd;
+        }
+
+        .alerta-oculta {
+            display: none;
+        }
+    </style>
+</head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar_main navbar navbar-expand-md bg-body-tertiary">
-    <div class="container">
-      <!-- Logo de la empresa -->
-          <a class="navbar-brand" href="../../index.html"><img src="../../imagenes/logo Ecoagro.jpg" alt="logo ecoagro" width="50" height="50" class="rounded-2"></a>
-      <!-- Barra de búsqueda -->
-        <nav class="navbar bg-body-tertiary rounded-2 order-3 order-sm-0">
-          <div class="container">
-            <form class="d-flex" role="search">
-              <input class="form-control me-2 rounded-2" type="search" placeholder="Search" aria-label="Search"/>
-              <button class="btn btn-outline-success" type="submit"><img class="my-auto" src="../../imagenes/lupa.png" alt="Buscar" width="20" height="20"></button>
-            </form>
-          </div>
-        </nav>
-        <!-- Botón para colapsar el menú en pantallas pequeñas -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <img src="../../imagenes/icono-collapse.png" alt="menu" width="50" height="50"></button>
-          </button>
-      <!-- Enlaces de navegación -->
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="text_nav nav-link" href="../../products/catalogo_productos.html">catalogo</a>
-          </li>
-          <li class="nav-item">
-            <a class="text_nav nav-link" href="../../login.html">login</a>
-          </li>
-          <li class="nav-item">
-            <a class="text_nav nav-link" href="../../register.html">crear cuenta</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../../products/shopping_cart.html"><img src="../../imagenes/carrito-de-compras.png" alt="carrito_de_compras" width="20" height="20"></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../../configuracion.html"><img src="../../imagenes/configuracion.png" alt="configuracion" width="20" height="20"></a>
-          </li>
-        </ul>
-      </div>
-      
+
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-md navbar-ecoagro py-2 mb-4">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand d-flex align-items-center" href="../../index.jsp">
+            <img src="../../imagenes/logo Ecoagro.jpg" alt="logo ecoagro" width="45" height="45" class="rounded-2 me-2">
+            <span class="fw-bold text-success">EcoAgro Staff</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navAdmin">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navAdmin">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item me-3 text-end">
+                    <span id="navUsuarioNombre" class="fw-semibold d-block text-dark">Cargando...</span>
+                    <span id="navUsuarioRango" class="badge badge-superadmin">Verificando</span>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-outline-danger btn-sm" onclick="cerrarSesion()">Cerrar Sesión</button>
+                </li>
+            </ul>
+        </div>
     </div>
-  </nav>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</nav>
+
+<!-- Contenedor principal -->
+<div class="container-fluid px-4">
+
+    <!-- Alerta de acceso denegado -->
+    <div id="alertaAcceso" class="alert alert-danger alerta-oculta" role="alert">
+        Acceso no autorizado. Debes iniciar sesión con una cuenta administrativa.
+        <a href="../../Login-SignUp/login.jsp" class="alert-link">Ir al Login</a>
+    </div>
+
+    <div id="contenedorPanel" style="display: none;">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h2 class="panel-titulo mb-0">Panel Administrativo y de Seguridad</h2>
+                <small class="text-muted">Supervisión integral de usuarios, incidentes y personal de EcoAgro</small>
+            </div>
+            <button class="btn btn-outline-success btn-sm" onclick="recargarTodo()">&#x21bb; Actualizar Datos</button>
+        </div>
+
+        <!-- Pestañas de navegación -->
+        <ul class="nav nav-tabs mb-4" id="pestañasAdmin" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="tab-resumen" data-bs-toggle="tab" data-bs-target="#contenido-resumen" type="button" role="tab">Resumen</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-usuarios" data-bs-toggle="tab" data-bs-target="#contenido-usuarios" type="button" role="tab">Supervisión de Usuarios</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-incidentes" data-bs-toggle="tab" data-bs-target="#contenido-incidentes" type="button" role="tab">Incidentes de Seguridad</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-auditoria" data-bs-toggle="tab" data-bs-target="#contenido-auditoria" type="button" role="tab">Auditoría y Eventos</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-staff" data-bs-toggle="tab" data-bs-target="#contenido-staff" type="button" role="tab">Personal Administrativo</button>
+            </li>
+        </ul>
+
+        <!-- Contenido de las pestañas -->
+        <div class="tab-content" id="contenidoPestañas">
+
+            <!-- 1. RESUMEN Y MÉTRICAS -->
+            <div class="tab-pane fade show active" id="contenido-resumen" role="tabpanel">
+                <div class="row g-3 mb-4">
+                    <div class="col-md-2 col-sm-6">
+                        <div class="card card-custom card-metrica p-3">
+                            <span class="text-muted small">Total Usuarios</span>
+                            <h3 id="metricaTotalUsuarios" class="fw-bold my-1 text-primary">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="card card-custom card-metrica p-3">
+                            <span class="text-muted small">Cuentas Activas</span>
+                            <h3 id="metricaActivos" class="fw-bold my-1 text-success">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="card card-custom card-metrica p-3" style="border-left-color: #dc3545;">
+                            <span class="text-muted small">Suspendidos</span>
+                            <h3 id="metricaSuspendidos" class="fw-bold my-1 text-danger">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="card card-custom card-metrica p-3" style="border-left-color: #fd7e14;">
+                            <span class="text-muted small">Incidentes Abiertos</span>
+                            <h3 id="metricaIncidentesAbiertos" class="fw-bold my-1 text-warning">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="card card-custom card-metrica p-3">
+                            <span class="text-muted small">Total Incidentes</span>
+                            <h3 id="metricaTotalIncidentes" class="fw-bold my-1 text-secondary">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="card card-custom card-metrica p-3">
+                            <span class="text-muted small">Eventos Registrados</span>
+                            <h3 id="metricaTotalEventos" class="fw-bold my-1 text-info">0</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-custom">
+                    <div class="card-header">Acciones Rápidas del Personal</div>
+                    <div class="card-body">
+                        <p class="mb-2">Bienvenido al módulo de seguridad y gestión de EcoAgro. Selecciona una sección para trabajar:</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button class="btn btn-outline-success" onclick="cambiarPestaña('tab-usuarios')">Supervisar Usuarios</button>
+                            <button class="btn btn-outline-primary" onclick="cambiarPestaña('tab-incidentes')">Revisar Incidentes</button>
+                            <button class="btn btn-outline-secondary" onclick="cambiarPestaña('tab-auditoria')">Ver Registros de Auditoría</button>
+                            <button class="btn btn-outline-dark" onclick="cambiarPestaña('tab-staff')">Personal del Staff</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. SUPERVISIÓN DE USUARIOS -->
+            <div class="tab-pane fade" id="contenido-usuarios" role="tabpanel">
+                <div class="card card-custom">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>Listado de Compradores y Vendedores</span>
+                    </div>
+                    <div class="card-body">
+                        <!-- Filtros -->
+                        <div class="row g-2 mb-3">
+                            <div class="col-md-4">
+                                <input type="text" id="filtroUsuarioBusqueda" class="form-control" placeholder="Buscar por nombre, correo o celular...">
+                            </div>
+                            <div class="col-md-3">
+                                <select id="filtroUsuarioTipo" class="form-select">
+                                    <option value="ALL">Todos los tipos</option>
+                                    <option value="COMPRADOR">Compradores</option>
+                                    <option value="VENDEDOR">Vendedores (Productores)</option>
+                                    <option value="STAFF">Personal Administrativo</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select id="filtroUsuarioEstado" class="form-select">
+                                    <option value="ALL">Todos los estados</option>
+                                    <option value="ACTIVE">Activos</option>
+                                    <option value="SUSPENDED">Suspendidos</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-verde w-100" onclick="cargarUsuarios()">Filtrar</button>
+                            </div>
+                        </div>
+
+                        <!-- Tabla de usuarios -->
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Celular</th>
+                                        <th>Tipo</th>
+                                        <th>Rol Staff</th>
+                                        <th>Estado</th>
+                                        <th>Registro</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaUsuariosCuerpo">
+                                    <tr><td colspan="9" class="text-center text-muted">Cargando usuarios...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. INCIDENTES DE SEGURIDAD -->
+            <div class="tab-pane fade" id="contenido-incidentes" role="tabpanel">
+                <div class="card card-custom">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>Gestión y Seguimiento de Incidentes de Seguridad</span>
+                        <button class="btn btn-light btn-sm" onclick="abrirModalCrearIncidente()">+ Registrar Incidente</button>
+                    </div>
+                    <div class="card-body">
+                        <!-- Filtros de incidentes -->
+                        <div class="row g-2 mb-3">
+                            <div class="col-md-4">
+                                <select id="filtroIncidenteEstado" class="form-select">
+                                    <option value="ALL">Todos los estados</option>
+                                    <option value="OPEN">OPEN (Abierto)</option>
+                                    <option value="IN_REVIEW">IN_REVIEW (En Revisión)</option>
+                                    <option value="RESOLVED">RESOLVED (Resuelto)</option>
+                                    <option value="CLOSED">CLOSED (Cerrado)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select id="filtroIncidenteCategoria" class="form-select">
+                                    <option value="ALL">Todas las categorías</option>
+                                    <option value="COMPORTAMIENTO_SOSPECHOSO">Comportamiento Sospechoso</option>
+                                    <option value="FRAUDE_PAGO">Fraude de Pago</option>
+                                    <option value="PRODUCTO_ILEGAL">Producto No Permitido</option>
+                                    <option value="ACCESO_NO_AUTORIZADO">Acceso No Autorizado</option>
+                                    <option value="OTRO">Otro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-verde w-100" onclick="cargarIncidentes()">Filtrar Incidentes</button>
+                            </div>
+                        </div>
+
+                        <!-- Tabla de incidentes -->
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Título</th>
+                                        <th>Afectado</th>
+                                        <th>Categoría</th>
+                                        <th>Prioridad</th>
+                                        <th>Estado</th>
+                                        <th>Reportado por</th>
+                                        <th>Fecha</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaIncidentesCuerpo">
+                                    <tr><td colspan="9" class="text-center text-muted">Cargando incidentes...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. AUDITORÍA Y EVENTOS -->
+            <div class="tab-pane fade" id="contenido-auditoria" role="tabpanel">
+                <div class="card card-custom">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>Registro de Eventos y Actividades de Seguridad</span>
+                    </div>
+                    <div class="card-body">
+                        <!-- Filtros de eventos -->
+                        <div class="row g-2 mb-3">
+                            <div class="col-md-4">
+                                <input type="number" id="filtroLogIdUser" class="form-control" placeholder="ID del usuario (opcional)">
+                            </div>
+                            <div class="col-md-5">
+                                <select id="filtroLogTipo" class="form-select">
+                                    <option value="ALL">Todos los tipos de eventos</option>
+                                    <option value="LOGIN_SUCCESS">LOGIN_SUCCESS (Inicio exitoso)</option>
+                                    <option value="LOGIN_FAILED">LOGIN_FAILED (Inicio fallido)</option>
+                                    <option value="LOGOUT">LOGOUT (Cierre de sesión)</option>
+                                    <option value="ACCOUNT_SUSPENDED">ACCOUNT_SUSPENDED (Cuenta suspendida)</option>
+                                    <option value="ACCOUNT_REACTIVATED">ACCOUNT_REACTIVATED (Cuenta reactivada)</option>
+                                    <option value="INCIDENT_CREATED">INCIDENT_CREATED (Incidente creado)</option>
+                                    <option value="INCIDENT_UPDATED">INCIDENT_UPDATED (Incidente actualizado)</option>
+                                    <option value="ROLE_ASSIGNED">ROLE_ASSIGNED (Rol asignado)</option>
+                                    <option value="ROLE_MODIFIED">ROLE_MODIFIED (Rol modificado)</option>
+                                    <option value="ROLE_REVOKED">ROLE_REVOKED (Rol revocado)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-verde w-100" onclick="cargarLogs()">Filtrar Registros</button>
+                            </div>
+                        </div>
+
+                        <!-- Tabla de logs -->
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Fecha / Hora</th>
+                                        <th>Tipo Evento</th>
+                                        <th>Usuario</th>
+                                        <th>Actor</th>
+                                        <th>Descripción</th>
+                                        <th>IP</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaLogsCuerpo">
+                                    <tr><td colspan="7" class="text-center text-muted">Cargando eventos...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. PERSONAL ADMINISTRATIVO (STAFF) -->
+            <div class="tab-pane fade" id="contenido-staff" role="tabpanel">
+                <div class="card card-custom">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>Personal Administrativo Actual</span>
+                        <button class="btn btn-light btn-sm" onclick="cargarPersonal()">Actualizar</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive mb-4">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID Asig.</th>
+                                        <th>ID Usuario</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Celular</th>
+                                        <th>Rango</th>
+                                        <th>Asignado el</th>
+                                        <th class="col-acciones-superadmin" style="display:none;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTablaStaff">
+                                    <tr><td colspan="8" class="text-center text-muted">Cargando personal...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Sección de gestión exclusiva de SUPERADMINISTRADOR -->
+                        <div class="seccion-superadmin border-top pt-3" style="display:none;">
+                            <h5 class="fw-bold text-success mb-3">Gestión de Roles Administrativos (Exclusivo SUPERADMINISTRADOR)</h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="card card-body border">
+                                        <h6 class="fw-bold">Asignar Rango</h6>
+                                        <form id="formAsignar" onsubmit="asignarRango(event)">
+                                            <div class="mb-2">
+                                                <label class="form-label small">ID Usuario:</label>
+                                                <input type="number" id="asignarIdUser" class="form-control form-control-sm" required min="1">
+                                            </div>
+                                            <div class="mb-2">
+                                                <label class="form-label small">Rol:</label>
+                                                <select id="asignarIdRole" class="form-select form-select-sm" required>
+                                                    <option value="1">1 - SUPERADMINISTRADOR</option>
+                                                    <option value="2">2 - ADMIN_SEGURIDAD</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-verde btn-sm w-100">Asignar Rol</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card card-body border">
+                                        <h6 class="fw-bold">Cambiar Rango</h6>
+                                        <form id="formCambiar" onsubmit="cambiarRango(event)">
+                                            <div class="mb-2">
+                                                <label class="form-label small">ID Asignación:</label>
+                                                <input type="number" id="cambiarIdAssignment" class="form-control form-control-sm" required min="1">
+                                            </div>
+                                            <div class="mb-2">
+                                                <label class="form-label small">Nuevo Rol:</label>
+                                                <select id="cambiarIdRole" class="form-select form-select-sm" required>
+                                                    <option value="1">1 - SUPERADMINISTRADOR</option>
+                                                    <option value="2">2 - ADMIN_SEGURIDAD</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-verde btn-sm w-100">Cambiar Rol</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /tab-content -->
+
+    </div><!-- /contenedorPanel -->
+
+</div><!-- /container-fluid -->
+
+<!-- =========================================================================
+     MODALES
+========================================================================= -->
+
+<!-- Modal Detalle de Usuario -->
+<div class="modal fade" id="modalDetalleUsuario" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Detalle del Usuario</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="modalDetalleUsuarioCuerpo">
+                Cargando información...
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Suspender Cuenta -->
+<div class="modal fade" id="modalSuspender" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Suspender Cuenta de Usuario</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="suspenderIdUser">
+                <p>Estás a punto de suspender al usuario: <strong id="suspenderNombreUsuario"></strong></p>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Motivo de la suspensión (obligatorio):</label>
+                    <textarea id="suspenderMotivo" class="form-control" rows="3" placeholder="Describe claramente la razón de la suspensión..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" onclick="confirmarSuspension()">Suspender Cuenta</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Crear Incidente -->
+<div class="modal fade" id="modalCrearIncidente" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Registrar Nuevo Incidente de Seguridad</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formCrearIncidente" onsubmit="guardarIncidente(event)">
+                    <div class="mb-2">
+                        <label class="form-label small fw-bold">ID del Usuario Afectado:</label>
+                        <input type="number" id="incidenteIdUser" class="form-control" required min="1" placeholder="Ej: 2">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label small fw-bold">Título del Incidente:</label>
+                        <input type="text" id="incidenteTitulo" class="form-control" required placeholder="Ej: Publicación de producto sospechoso">
+                    </div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-6">
+                            <label class="form-label small fw-bold">Categoría:</label>
+                            <select id="incidenteCategoria" class="form-select" required>
+                                <option value="COMPORTAMIENTO_SOSPECHOSO">Comportamiento Sospechoso</option>
+                                <option value="FRAUDE_PAGO">Fraude de Pago</option>
+                                <option value="PRODUCTO_ILEGAL">Producto Ilegal</option>
+                                <option value="ACCESO_NO_AUTORIZADO">Acceso No Autorizado</option>
+                                <option value="OTRO">Otro</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label small fw-bold">Prioridad:</label>
+                            <select id="incidentePrioridad" class="form-select" required>
+                                <option value="BAJA">Baja</option>
+                                <option value="MEDIA" selected>Media</option>
+                                <option value="ALTA">Alta</option>
+                                <option value="CRITICA">Crítica</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Descripción de los hechos:</label>
+                        <textarea id="incidenteDescripcion" class="form-control" rows="3" required placeholder="Detalles de la situación observada..."></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-verde">Registrar Incidente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Detalle y Seguimiento de Incidente -->
+<div class="modal fade" id="modalDetalleIncidente" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Seguimiento de Incidente</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="incidenteInfoDetalle" class="mb-3">Cargando...</div>
+                
+                <h6 class="fw-bold border-bottom pb-1">Historial de Seguimiento</h6>
+                <div id="incidenteHistorialLista" class="mb-3 small" style="max-height: 200px; overflow-y: auto;"></div>
+
+                <div class="card card-body bg-light">
+                    <h6 class="fw-bold">Actualizar Estado y Seguimiento</h6>
+                    <form id="formActualizarIncidente" onsubmit="guardarActualizacionIncidente(event)">
+                        <input type="hidden" id="actIdIncidente">
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Nuevo Estado:</label>
+                                <select id="actNuevoEstado" class="form-select form-select-sm" required>
+                                    <option value="OPEN">OPEN (Abierto)</option>
+                                    <option value="IN_REVIEW">IN_REVIEW (En Revisión)</option>
+                                    <option value="RESOLVED">RESOLVED (Resuelto)</option>
+                                    <option value="CLOSED">CLOSED (Cerrado)</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Notas de Resolución (opcional):</label>
+                                <input type="text" id="actNotasResolucion" class="form-control form-control-sm" placeholder="Conclusión del incidente">
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold">Comentario de seguimiento:</label>
+                            <textarea id="actComentario" class="form-control form-control-sm" rows="2" placeholder="Explica la acción realizada..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm w-100">Guardar Seguimiento</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Rutas base de las API de EcoAgro
+    const BASE_PATH = window.location.pathname.startsWith("/ECOAGRO") ? "/ECOAGRO" : "";
+    const URL_STAFF      = BASE_PATH + "/api/Api_Admin_Staff";
+    const URL_LOGIN      = BASE_PATH + "/api/Api_Login";
+    const URL_USERS      = BASE_PATH + "/api/Api_Security_Users";
+    const URL_LOGS       = BASE_PATH + "/api/Api_Security_Logs";
+    const URL_INCIDENTS  = BASE_PATH + "/api/Api_Security_Incidents";
+
+    let rangoActual = "";
+    let usuarioActualId = 0;
+
+    // Inicialización al cargar la página
+    document.addEventListener("DOMContentLoaded", function () {
+        verificarSesionYInicializar();
+    });
+
+    // Comprueba la sesión activa con la API
+    function verificarSesionYInicializar() {
+        fetch(URL_STAFF, { credentials: "same-origin" })
+            .then(res => res.json().then(data => ({ status: res.status, data })))
+            .then(({ status, data }) => {
+                if (status === 401 || status === 403) {
+                    document.getElementById("alertaAcceso").style.display = "block";
+                    document.getElementById("contenedorPanel").style.display = "none";
+                    return;
+                }
+
+                rangoActual = data.rango || "";
+                usuarioActualId = data.idUsuario || 0;
+
+                document.getElementById("navUsuarioNombre").textContent = data.nombre || "Usuario";
+                document.getElementById("navUsuarioRango").textContent = rangoActual;
+                document.getElementById("contenedorPanel").style.display = "block";
+
+                // Si es SUPERADMINISTRADOR, habilitar controles de gestión de staff
+                if (rangoActual === "SUPERADMINISTRADOR") {
+                    document.querySelectorAll(".seccion-superadmin, .col-acciones-superadmin").forEach(el => el.style.display = "");
+                }
+
+                recargarTodo();
+            })
+            .catch(() => {
+                document.getElementById("alertaAcceso").textContent = "No fue posible conectar con el servidor.";
+                document.getElementById("alertaAcceso").style.display = "block";
+            });
+    }
+
+    function recargarTodo() {
+        cargarMetricas();
+        cargarUsuarios();
+        cargarIncidentes();
+        cargarLogs();
+        cargarPersonal();
+    }
+
+    function cambiarPestaña(idTab) {
+        const tabEl = document.getElementById(idTab);
+        if (tabEl) {
+            bootstrap.Tab.getOrCreateInstance(tabEl).show();
+        }
+    }
+
+    // 1. Cargar Métricas
+    function cargarMetricas() {
+        fetch(URL_LOGS + "?metricas=true", { credentials: "same-origin" })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("metricaTotalUsuarios").textContent = data.totalUsuarios ?? 0;
+                document.getElementById("metricaActivos").textContent = data.usuariosActivos ?? 0;
+                document.getElementById("metricaSuspendidos").textContent = data.usuariosSuspendidos ?? 0;
+                document.getElementById("metricaIncidentesAbiertos").textContent = data.incidentesAbiertos ?? 0;
+                document.getElementById("metricaTotalIncidentes").textContent = data.totalIncidentes ?? 0;
+                document.getElementById("metricaTotalEventos").textContent = data.totalEventos ?? 0;
+            })
+            .catch(console.error);
+    }
+
+    // 2. Cargar Usuarios
+    function cargarUsuarios() {
+        const busqueda = encodeURIComponent(document.getElementById("filtroUsuarioBusqueda").value.trim());
+        const tipo = encodeURIComponent(document.getElementById("filtroUsuarioTipo").value);
+        const estado = encodeURIComponent(document.getElementById("filtroUsuarioEstado").value);
+
+        fetch(`${URL_USERS}?busqueda=${busqueda}&tipo=${tipo}&estado=${estado}`, { credentials: "same-origin" })
+            .then(res => res.json())
+            .then(data => {
+                const tbody = document.getElementById("tablaUsuariosCuerpo");
+                const lista = data.usuarios || [];
+
+                if (lista.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="9" class="text-center text-muted">No se encontraron usuarios con los criterios indicados.</td></tr>';
+                    return;
+                }
+
+                let html = "";
+                lista.forEach(u => {
+                    const badgeEstado = u.estado === "ACTIVE"
+                        ? '<span class="badge badge-activo">ACTIVA</span>'
+                        : '<span class="badge badge-suspendido">SUSPENDIDA</span>';
+
+                    const badgeTipo = u.tipoUsuario === "VENDEDOR"
+                        ? '<span class="badge bg-success">Vendedor</span>'
+                        : '<span class="badge bg-secondary">Comprador</span>';
+
+                    const badgeStaff = u.rangoStaff
+                        ? `<span class="badge bg-info text-dark">${u.rangoStaff}</span>`
+                        : '<span class="text-muted small">—</span>';
+
+                    let botonSuspension = "";
+                    if (!u.rangoStaff && u.idUser !== usuarioActualId) {
+                        if (u.estado === "ACTIVE") {
+                            botonSuspension = `<button class="btn btn-outline-danger btn-sm" onclick="abrirModalSuspender(${u.idUser}, '${escapeHtml(u.nombre)}')">Suspender</button>`;
+                        } else {
+                            botonSuspension = `<button class="btn btn-outline-success btn-sm" onclick="reactivarCuenta(${u.idUser})">Reactivar</button>`;
+                        }
+                    }
+
+                    html += `<tr>
+                        <td>${u.idUser}</td>
+                        <td><strong>${escapeHtml(u.nombre)}</strong></td>
+                        <td>${escapeHtml(u.email)}</td>
+                        <td>${escapeHtml(u.telefono || '—')}</td>
+                        <td>${badgeTipo}</td>
+                        <td>${badgeStaff}</td>
+                        <td>${badgeEstado}</td>
+                        <td><small>${formatearFecha(u.fechaRegistro)}</small></td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm me-1" onclick="verDetalleUsuario(${u.idUser})">Detalle</button>
+                            ${botonSuspension}
+                        </td>
+                    </tr>`;
+                });
+
+                tbody.innerHTML = html;
+            })
+            .catch(() => {
+                document.getElementById("tablaUsuariosCuerpo").innerHTML = '<tr><td colspan="9" class="text-center text-danger">Error al cargar usuarios.</td></tr>';
+            });
+    }
+
+    function verDetalleUsuario(idUser) {
+        fetch(`${URL_USERS}?idUser=${idUser}`, { credentials: "same-origin" })
+            .then(res => res.json())
+            .then(u => {
+                const cuerpo = document.getElementById("modalDetalleUsuarioCuerpo");
+                cuerpo.innerHTML = `
+                    <p><strong>ID Usuario:</strong> ${u.idUser}</p>
+                    <p><strong>Nombre:</strong> ${escapeHtml(u.nombre)}</p>
+                    <p><strong>Correo:</strong> ${escapeHtml(u.email)}</p>
+                    <p><strong>Teléfono:</strong> ${escapeHtml(u.telefono || '—')}</p>
+                    <p><strong>Tipo:</strong> ${u.tipoUsuario}</p>
+                    <p><strong>Rol Staff:</strong> ${u.rangoStaff || 'Ninguno'}</p>
+                    <p><strong>Estado Actual:</strong> <span class="badge ${u.estado === 'ACTIVE' ? 'bg-success' : 'bg-danger'}">${u.estado}</span></p>
+                    <p><strong>Motivo del Estado:</strong> ${escapeHtml(u.motivoEstado || 'Sin motivo registrado')}</p>
+                    <p><strong>Fecha Registro:</strong> ${formatearFecha(u.fechaRegistro)}</p>
+                    <p><strong>Última Actualización Estado:</strong> ${formatearFecha(u.fechaEstado)}</p>
+                `;
+                new bootstrap.Modal(document.getElementById("modalDetalleUsuario")).show();
+            });
+    }
+
+    function abrirModalSuspender(idUser, nombre) {
+        document.getElementById("suspenderIdUser").value = idUser;
+        document.getElementById("suspenderNombreUsuario").textContent = nombre;
+        document.getElementById("suspenderMotivo").value = "";
+        new bootstrap.Modal(document.getElementById("modalSuspender")).show();
+    }
+
+    function confirmarSuspension() {
+        const idUser = parseInt(document.getElementById("suspenderIdUser").value, 10);
+        const reason = document.getElementById("suspenderMotivo").value.trim();
+
+        if (!reason) {
+            alert("Debes indicar un motivo para la suspensión.");
+            return;
+        }
+
+        fetch(URL_USERS, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({ idUser, action: "SUSPEND", reason })
+        })
+        .then(res => res.json().then(data => ({ status: res.status, data })))
+        .then(({ status, data }) => {
+            if (status === 200) {
+                alert(data.mensaje);
+                bootstrap.Modal.getInstance(document.getElementById("modalSuspender")).hide();
+                cargarUsuarios();
+                cargarMetricas();
+                cargarLogs();
+            } else {
+                alert(data.error || "No se pudo suspender la cuenta.");
+            }
+        });
+    }
+
+    function reactivarCuenta(idUser) {
+        const reason = prompt("Indica el motivo de la reactivación:", "Revisión completada por personal de seguridad.");
+        if (reason === null) return;
+
+        fetch(URL_USERS, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({ idUser, action: "REACTIVATE", reason })
+        })
+        .then(res => res.json().then(data => ({ status: res.status, data })))
+        .then(({ status, data }) => {
+            if (status === 200) {
+                alert(data.mensaje);
+                cargarUsuarios();
+                cargarMetricas();
+                cargarLogs();
+            } else {
+                alert(data.error || "No se pudo reactivar la cuenta.");
+            }
+        });
+    }
+
+    // 3. Cargar Incidentes
+    function cargarIncidentes() {
+        const status = encodeURIComponent(document.getElementById("filtroIncidenteEstado").value);
+        const category = encodeURIComponent(document.getElementById("filtroIncidenteCategoria").value);
+
+        fetch(`${URL_INCIDENTS}?status=${status}&category=${category}`, { credentials: "same-origin" })
+            .then(res => res.json())
+            .then(data => {
+                const tbody = document.getElementById("tablaIncidentesCuerpo");
+                const lista = data.incidentes || [];
+
+                if (lista.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="9" class="text-center text-muted">No hay incidentes registrados.</td></tr>';
+                    return;
+                }
+
+                let html = "";
+                lista.forEach(inc => {
+                    let badgeEstado = "bg-warning text-dark";
+                    if (inc.status === "RESOLVED") badgeEstado = "bg-success";
+                    if (inc.status === "CLOSED") badgeEstado = "bg-secondary";
+                    if (inc.status === "IN_REVIEW") badgeEstado = "bg-info text-dark";
+
+                    html += `<tr>
+                        <td><strong>#${inc.idIncident}</strong></td>
+                        <td>${escapeHtml(inc.title)}</td>
+                        <td>${escapeHtml(inc.usuarioAfectadoNombre)} (ID: ${inc.idUserAffected})</td>
+                        <td><small>${inc.category}</small></td>
+                        <td><span class="badge ${inc.priority === 'CRITICA' || inc.priority === 'ALTA' ? 'bg-danger' : 'bg-primary'}">${inc.priority}</span></td>
+                        <td><span class="badge ${badgeEstado}">${inc.status}</span></td>
+                        <td><small>${escapeHtml(inc.reportadoPorNombre)}</small></td>
+                        <td><small>${formatearFecha(inc.createdAt)}</small></td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm" onclick="verSeguimientoIncidente(${inc.idIncident})">Seguimiento</button>
+                        </td>
+                    </tr>`;
+                });
+
+                tbody.innerHTML = html;
+            })
+            .catch(() => {
+                document.getElementById("tablaIncidentesCuerpo").innerHTML = '<tr><td colspan="9" class="text-center text-danger">Error al cargar incidentes.</td></tr>';
+            });
+    }
+
+    function abrirModalCrearIncidente() {
+        document.getElementById("formCrearIncidente").reset();
+        new bootstrap.Modal(document.getElementById("modalCrearIncidente")).show();
+    }
+
+    function guardarIncidente(event) {
+        event.preventDefault();
+        const idUserAffected = parseInt(document.getElementById("incidenteIdUser").value, 10);
+        const title = document.getElementById("incidenteTitulo").value.trim();
+        const category = document.getElementById("incidenteCategoria").value;
+        const priority = document.getElementById("incidentePrioridad").value;
+        const description = document.getElementById("incidenteDescripcion").value.trim();
+
+        fetch(URL_INCIDENTS, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({ idUserAffected, title, category, priority, description })
+        })
+        .then(res => res.json().then(data => ({ status: res.status, data })))
+        .then(({ status, data }) => {
+            if (status === 201) {
+                alert(data.mensaje);
+                bootstrap.Modal.getInstance(document.getElementById("modalCrearIncidente")).hide();
+                cargarIncidentes();
+                cargarMetricas();
+                cargarLogs();
+            } else {
+                alert(data.error || "No se pudo registrar el incidente.");
+            }
+        });
+    }
+
+    function verSeguimientoIncidente(idIncident) {
+        fetch(`${URL_INCIDENTS}?idIncident=${idIncident}`, { credentials: "same-origin" })
+            .then(res => res.json())
+            .then(inc => {
+                document.getElementById("actIdIncidente").value = inc.idIncident;
+                document.getElementById("actNuevoEstado").value = inc.status;
+                document.getElementById("actNotasResolucion").value = inc.resolutionNotes || "";
+                document.getElementById("actComentario").value = "";
+
+                document.getElementById("incidenteInfoDetalle").innerHTML = `
+                    <h6><strong>Incidente #${inc.idIncident}:</strong> ${escapeHtml(inc.title)}</h6>
+                    <p class="mb-1"><strong>Afectado:</strong> ${escapeHtml(inc.usuarioAfectadoNombre)} (${escapeHtml(inc.usuarioAfectadoEmail)})</p>
+                    <p class="mb-1"><strong>Descripción:</strong> ${escapeHtml(inc.description)}</p>
+                    <p class="mb-1"><strong>Estado actual:</strong> <span class="badge bg-secondary">${inc.status}</span> | <strong>Prioridad:</strong> ${inc.priority}</p>
+                `;
+
+                const histBox = document.getElementById("incidenteHistorialLista");
+                const historial = inc.historial || [];
+                if (historial.length === 0) {
+                    histBox.innerHTML = '<p class="text-muted">Sin historial previo.</p>';
+                } else {
+                    let html = '<ul class="list-group list-group-flush">';
+                    historial.forEach(h => {
+                        html += `<li class="list-group-item px-0">
+                            <strong>${escapeHtml(h.actorNombre)}</strong> (${formatearFecha(h.createdAt)}):
+                            <br><span>${escapeHtml(h.comment)}</span>
+                            ${h.newStatus ? `<span class="badge bg-light text-dark border ms-1">${h.previousStatus || 'INICIO'} &rarr; ${h.newStatus}</span>` : ''}
+                        </li>`;
+                    });
+                    html += '</ul>';
+                    histBox.innerHTML = html;
+                }
+
+                new bootstrap.Modal(document.getElementById("modalDetalleIncidente")).show();
+            });
+    }
+
+    function guardarActualizacionIncidente(event) {
+        event.preventDefault();
+        const idIncident = parseInt(document.getElementById("actIdIncidente").value, 10);
+        const status = document.getElementById("actNuevoEstado").value;
+        const resolutionNotes = document.getElementById("actNotasResolucion").value.trim();
+        const comment = document.getElementById("actComentario").value.trim();
+
+        fetch(URL_INCIDENTS, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({ idIncident, status, resolutionNotes, comment })
+        })
+        .then(res => res.json().then(data => ({ status: res.status, data })))
+        .then(({ status: cod, data }) => {
+            if (cod === 200) {
+                alert(data.mensaje);
+                bootstrap.Modal.getInstance(document.getElementById("modalDetalleIncidente")).hide();
+                cargarIncidentes();
+                cargarMetricas();
+                cargarLogs();
+            } else {
+                alert(data.error || "No se pudo actualizar el incidente.");
+            }
+        });
+    }
+
+    // 4. Cargar Logs de Auditoría
+    function cargarLogs() {
+        const idUser = encodeURIComponent(document.getElementById("filtroLogIdUser").value.trim());
+        const eventType = encodeURIComponent(document.getElementById("filtroLogTipo").value);
+
+        fetch(`${URL_LOGS}?idUser=${idUser}&eventType=${eventType}&limit=50`, { credentials: "same-origin" })
+            .then(res => res.json())
+            .then(data => {
+                const tbody = document.getElementById("tablaLogsCuerpo");
+                const lista = data.eventos || [];
+
+                if (lista.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">No hay registros de eventos disponibles.</td></tr>';
+                    return;
+                }
+
+                let html = "";
+                lista.forEach(l => {
+                    let badgeColor = "bg-secondary";
+                    if (l.eventType === "LOGIN_SUCCESS") badgeColor = "bg-success";
+                    if (l.eventType === "LOGIN_FAILED") badgeColor = "bg-danger";
+                    if (l.eventType.startsWith("ACCOUNT_")) badgeColor = "bg-warning text-dark";
+                    if (l.eventType.startsWith("INCIDENT_")) badgeColor = "bg-primary";
+                    if (l.eventType.startsWith("ROLE_")) badgeColor = "bg-info text-dark";
+
+                    html += `<tr>
+                        <td><small>${l.idLog}</small></td>
+                        <td><small>${formatearFecha(l.createdAt)}</small></td>
+                        <td><span class="badge ${badgeColor}">${l.eventType}</span></td>
+                        <td>${l.usuarioNombre ? escapeHtml(l.usuarioNombre) : '<span class="text-muted">—</span>'}</td>
+                        <td>${l.actorNombre ? escapeHtml(l.actorNombre) : '<span class="text-muted">—</span>'}</td>
+                        <td><small>${escapeHtml(l.description)}</small></td>
+                        <td><small class="text-muted">${l.ipAddress || '—'}</small></td>
+                    </tr>`;
+                });
+
+                tbody.innerHTML = html;
+            })
+            .catch(() => {
+                document.getElementById("tablaLogsCuerpo").innerHTML = '<tr><td colspan="7" class="text-center text-danger">Error al cargar registros.</td></tr>';
+            });
+    }
+
+    // 5. Cargar Personal Administrativo (Staff)
+    function cargarPersonal() {
+        fetch(URL_STAFF, { credentials: "same-origin" })
+            .then(res => res.json())
+            .then(data => {
+                const tbody = document.getElementById("cuerpoTablaStaff");
+                const personal = data.personal || [];
+
+                if (personal.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted">No hay personal registrado.</td></tr>';
+                    return;
+                }
+
+                let html = "";
+                personal.forEach(p => {
+                    const botonRetirar = rangoActual === "SUPERADMINISTRADOR"
+                        ? `<button class="btn btn-outline-danger btn-sm" onclick="retirarStaff(${p.idAssignment})">Retirar</button>`
+                        : "";
+
+                    html += `<tr>
+                        <td>${p.idAssignment}</td>
+                        <td>${p.idUser}</td>
+                        <td><strong>${escapeHtml(p.nombre)}</strong></td>
+                        <td>${escapeHtml(p.email)}</td>
+                        <td>${escapeHtml(p.telefono || '—')}</td>
+                        <td><span class="badge ${p.rango === 'SUPERADMINISTRADOR' ? 'badge-superadmin' : 'badge-seguridad'}">${p.rango}</span></td>
+                        <td><small>${formatearFecha(p.asignadoEl)}</small></td>
+                        <td class="col-acciones-superadmin" style="${rangoActual === 'SUPERADMINISTRADOR' ? '' : 'display:none;'}">${botonRetirar}</td>
+                    </tr>`;
+                });
+
+                tbody.innerHTML = html;
+            });
+    }
+
+    function asignarRango(event) {
+        event.preventDefault();
+        const idUser = parseInt(document.getElementById("asignarIdUser").value, 10);
+        const idRole = parseInt(document.getElementById("asignarIdRole").value, 10);
+
+        fetch(URL_STAFF, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({ idUser, idRole })
+        })
+        .then(res => res.json().then(data => ({ status: res.status, data })))
+        .then(({ status, data }) => {
+            if (status === 201) {
+                alert(data.mensaje);
+                document.getElementById("formAsignar").reset();
+                cargarPersonal();
+                cargarUsuarios();
+                cargarLogs();
+            } else {
+                alert(data.error || "No se pudo asignar el rol.");
+            }
+        });
+    }
+
+    function cambiarRango(event) {
+        event.preventDefault();
+        const idAssignment = parseInt(document.getElementById("cambiarIdAssignment").value, 10);
+        const idRole = parseInt(document.getElementById("cambiarIdRole").value, 10);
+
+        fetch(URL_STAFF, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({ idAssignment, idRole })
+        })
+        .then(res => res.json().then(data => ({ status: res.status, data })))
+        .then(({ status, data }) => {
+            if (status === 200) {
+                alert(data.mensaje);
+                document.getElementById("formCambiar").reset();
+                cargarPersonal();
+                cargarLogs();
+            } else {
+                alert(data.error || "No se pudo cambiar el rol.");
+            }
+        });
+    }
+
+    function retirarStaff(idAssignment) {
+        if (!confirm("¿Seguro de retirar esta asignación administrativa?")) return;
+
+        fetch(URL_STAFF, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({ idAssignment })
+        })
+        .then(res => res.json().then(data => ({ status: res.status, data })))
+        .then(({ status, data }) => {
+            if (status === 200) {
+                alert(data.mensaje);
+                cargarPersonal();
+                cargarUsuarios();
+                cargarLogs();
+            } else {
+                alert(data.error || "No se pudo retirar la asignación.");
+            }
+        });
+    }
+
+    function cerrarSesion() {
+        fetch(URL_LOGIN, {
+            method: "DELETE",
+            credentials: "same-origin"
+        }).finally(() => {
+            window.location.href = "../../Login-SignUp/login.jsp";
+        });
+    }
+
+    function formatearFecha(f) {
+        if (!f) return "—";
+        return f.replace("T", " ").substring(0, 16);
+    }
+
+    function escapeHtml(str) {
+        if (!str) return "";
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+</script>
+
 </body>
 </html>

@@ -12,8 +12,13 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const alerta = document.getElementById("mensajeAlerta");
 
     try {
-        // 3. Enviar la petición a la API (Ajusta /Login-SignUp/ si tu contexto de NetBeans es otro)
-        const respuesta = await fetch("http://localhost:8080/api/Api_Login", {
+        // Detectar la ruta base del contexto (para Tomcat o NetBeans)
+        const baseUrl = window.location.pathname.startsWith("/ECOAGRO")
+            ? "/ECOAGRO/api/Api_Login"
+            : "/api/Api_Login";
+
+        // 3. Enviar la petición a la API
+        const respuesta = await fetch(baseUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -32,15 +37,23 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             alerta.classList.add("alert-success");
             alerta.innerText = resultado.mensaje;
             
-            // Redirigir al dashboard tras un inicio de sesión exitoso
+            // Redirigir según el rango asignado
             setTimeout(() => {
-                window.location.href = "../users/user_comprador/dashboard_comprador.html";
-            }, 1000);
+                if (resultado.rango === "SUPERADMINISTRADOR" || resultado.rango === "ADMIN_SEGURIDAD") {
+                    window.location.href = "../users/user_admin/dashboard_admin.html";
+                } else {
+                    window.location.href = "../users/user_comprador/dashboard_comprador.html";
+                }
+            }, 800);
 
         } else { 
-            // Mostrar error 400 (formato) o 401 (credenciales incorrectas)
+            // Mostrar error 400 (formato), 401 (credenciales) o 403 (cuenta suspendida)
             alerta.classList.add("alert-danger");
-            alerta.innerText = resultado.error;
+            if (resultado.motivo) {
+                alerta.innerText = resultado.error + " (Motivo: " + resultado.motivo + ")";
+            } else {
+                alerta.innerText = resultado.error || "Error en el inicio de sesión.";
+            }
         }
 
     } catch (error) {

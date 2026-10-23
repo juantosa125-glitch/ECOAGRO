@@ -16,7 +16,7 @@ public class LoginDAO {
                 SELECT 1
                 FROM user
                 WHERE (email = ? OR number = ?)
-                  AND password = ?
+                AND password = ?
                 LIMIT 1
                 """;
 
