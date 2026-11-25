@@ -1,25 +1,28 @@
 package co.com.ecoagro.dao;
 
 import co.com.ecoagro.config.ConexionDB;
+import co.com.ecoagro.security.PasswordService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/** Consulta las credenciales almacenadas para el inicio de sesión. */
 public class LoginDAO {
 
+    /** Busca la cuenta por correo o celular y verifica la contraseña con el hash almacenado. */
     public boolean autenticar(String identifier, String password)
             throws SQLException {
 
         String sql = """
-                SELECT 1
+                SELECT password
                 FROM user
-                WHERE (email = ? OR number = ?)
-                  AND password = ?
+                WHERE email = ? OR number = ?
                 LIMIT 1
                 """;
 
+        String hash;
         try (Connection conn = ConexionDB.obtenerConexion()) {
 
             if (conn == null) {
@@ -30,12 +33,13 @@ public class LoginDAO {
 
                 ps.setString(1, identifier);
                 ps.setString(2, identifier);
-                ps.setString(3, password);
 
                 try (ResultSet rs = ps.executeQuery()) {
-                    return rs.next();
+                    hash = rs.next() ? rs.getString("password") : null;
                 }
             }
         }
+        // La verificación se realiza después de liberar la conexión a MySQL.
+        return PasswordService.verificar(password, hash);
     }
 }

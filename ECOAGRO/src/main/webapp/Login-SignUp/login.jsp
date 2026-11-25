@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <%-- Resuelve los enlaces desde la carpeta de acceso incluso al volver desde el servlet. --%>
+    <base href="${pageContext.request.contextPath}/Login-SignUp/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoAgro - Tu Mercado del Campo</title>
@@ -8,15 +10,13 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <!-- Navbar -->
+    <%-- Navegación del mercado y enlace al registro de cuentas. --%>
     <nav class="navbar_main navbar navbar-expand-md bg-body-tertiary">
         <div class="container">
-            <!-- Logo de la empresa -->
             <a class="navbar-brand" href="../index.jsp">
                 <img src="../imagenes/logo Ecoagro.jpg" alt="logo ecoagro" width="50" height="50" class="rounded-2">
             </a>
             
-            <!-- Barra de búsqueda -->
             <nav class="navbar bg-body-tertiary rounded-2 order-3 order-sm-0">
                 <div class="container">
                     <form class="d-flex" role="search">
@@ -28,12 +28,10 @@
                 </div>
             </nav>
             
-            <!-- Botón para colapsar el menú en pantallas pequeñas -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <img src="imagenes/icono-collapse.png" alt="menu" width="50" height="50">
             </button>
             
-            <!-- Enlaces de navegación -->
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -57,30 +55,26 @@
         </div>
     </nav>
 
-    <!-- Contenedor Principal del Login -->
     <div class="container d-flex justify-content-center align-items-center vh-100">        
         <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
             <div class="card-body">
                 <h3 class="text-center mb-4">Iniciar Sesión</h3>
                 
-                <!-- Contenedor vacío donde JavaScript inyectará las alertas de error -->
-                <div id="mensajeAlerta" class="alert text-center d-none" role="alert"></div>
+                <%-- Muestra el error del servlet o la respuesta que recibe Login.js. --%>
+                <div id="mensajeAlerta" class="alert text-center ${empty errorAuth ? 'd-none' : 'alert-danger'}" role="alert">${errorAuth}</div>
 
-                <!-- Formulario controlado por JavaScript (Sin action ni method) -->
-                <form id="loginForm">
-                    <!-- Campo combinado de Correo o Celular -->
+                <%-- Login.js envía el correo o celular y la contraseña a la ruta indicada en el formulario. --%>
+                <form id="loginForm" method="post" action="${pageContext.request.contextPath}/api/Api_Login">
                     <div class="mb-3">
                         <label for="inputIdentifier" class="form-label">Correo o Celular</label>
                         <input type="text" class="form-control" id="inputIdentifier" placeholder="ejemplo@correo.com o 3201234567" pattern="[a-zA-Z0-9@._-]+" title="Ingresa tu correo o un número de celular sin espacios ni signos extraños" required>
                     </div>
                 
-                    <!-- Campo de Contraseña -->
                     <div class="mb-4">
                         <label for="inputPassword" class="form-label">Contraseña</label>
                         <input type="password" class="form-control" id="inputPassword" placeholder="********" required>
                     </div>
                 
-                    <!-- Botón de Ingresar -->
                     <div class="d-grid">
                         <button type="submit" class="btn_submit btn btn-primary">Ingresar</button>
                     </div>
@@ -92,7 +86,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
-    <!-- Enlace a la lógica del formulario -->
     <script src="Login.js"></script>
 </body>
 </html>

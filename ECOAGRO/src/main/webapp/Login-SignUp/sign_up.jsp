@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <%-- Resuelve los enlaces desde la carpeta de registro incluso al volver desde el servlet. --%>
+    <base href="${pageContext.request.contextPath}/Login-SignUp/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoAgro - Tu Mercado del Campo</title>
@@ -8,12 +10,10 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <!-- Navbar -->
+  <%-- Navegación del mercado y enlace al inicio de sesión. --%>
   <nav class="navbar_main navbar navbar-expand-md bg-body-tertiary">
     <div class="container">
-      <!-- Logo de la empresa -->
           <a class="navbar-brand" href="index.jsp"><img src="../imagenes/logo Ecoagro.jpg" alt="logo ecoagro" width="50" height="50" class="rounded-2"></a>
-      <!-- Barra de bÃºsqueda -->
         <nav class="navbar bg-body-tertiary rounded-2 order-3 order-sm-0">
           <div class="container">
             <form class="d-flex" role="search">
@@ -22,11 +22,9 @@
             </form>
           </div>
         </nav>
-        <!-- BotÃ³n para colapsar el menÃº en pantallas pequeÃ±as -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <img src="imagenes/icono-collapse.png" alt="menu" width="50" height="50"></button>
           </button>
-      <!-- Enlaces de navegaciÃ³n -->
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
@@ -51,40 +49,35 @@
     <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
         <div class="card-body">
         <h3 class="text-center mb-4">registrate</h3>
-        <!--aqui js inyecta mensaje de la api -->
-          <div id="mensajeAlerta" class="alert text-center d-none" role="alert"></div>
-     <form id="registroForm">
-        <!-- Campo de Nombre con validación de solo letras y espacios -->
+          <%-- Muestra el error del servlet o la respuesta que recibe SignUp.js. --%>
+          <div id="mensajeAlerta" class="alert text-center ${empty errorAuth ? 'd-none' : 'alert-danger'}" role="alert">${errorAuth}</div>
+     <%-- SignUp.js envía los datos del alta y la confirmación de contraseña a la API. --%>
+     <form id="registroForm" method="post" action="${pageContext.request.contextPath}/api/Api_Sign_Up">
             <div class="mb-3">
                 <label for="inputNombre" class="form-label">Nombre Completo</label>
-                <input type="text" class="form-control" name="name" id="inputNombre" placeholder="Ingresa tu nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" title="Solo se permiten letras y espacios, sin números ni caracteres especiales" required>
+                <input type="text" class="form-control" id="inputNombre" placeholder="Ingresa tu nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" title="Solo se permiten letras y espacios, sin números ni caracteres especiales" required>
             </div>
         
-        <!-- Campo de Correo -->
             <div class="mb-3">
                 <label for="inputCorreo" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" name="email" id="inputCorreo" placeholder="ejemplo@correo.com" required>
+                <input type="email" class="form-control" id="inputCorreo" placeholder="ejemplo@correo.com" required>
             </div>
         
-        <!-- Campo de Celular/Teléfono con validación de solo números positivos -->
             <div class="mb-3">
                 <label for="inputNumero" class="form-label">Celular / Teléfono</label>
-                <input type="text" class="form-control" name="number" id="inputNumero" placeholder="3201234567" pattern="[0-9]+" title="Solo se permiten números positivos, sin letras ni signos" required>
+                <input type="text" class="form-control" id="inputNumero" placeholder="3201234567" pattern="[0-9]+" title="Solo se permiten números positivos, sin letras ni signos" required>
             </div>
         
-        <!-- Campo de Contraseña -->
             <div class="mb-4">
                 <label for="inputPassword" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" name="password" id="inputPassword" placeholder="********" required>
+                <input type="password" class="form-control" id="inputPassword" placeholder="********" required>
             </div>
         
-        <!-- Campo de Confirmar Contraseña -->
             <div class="mb-4">
                 <label for="inputConfirmPassword" class="form-label">Confirmar Contraseña</label>
-                <input type="password" class="form-control" name="confirm_password" id="inputConfirmPassword" placeholder="********" required>
+                <input type="password" class="form-control" id="inputConfirmPassword" placeholder="********" required>
             </div>
         
-        <!-- Botón de Registrar -->
             <div class="d-grid">
                 <button type="submit" class="btn_submit btn btn-primary">Registrarse</button>
             </div>

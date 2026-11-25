@@ -1,54 +1,49 @@
-// Escuchar cuando el usuario presiona el botón de "Registrarse"
+/** Envía la solicitud de registro y muestra el resultado del alta. */
 document.getElementById("registroForm").addEventListener("submit", async function(event) {
     
-    // Evita que la página HTML haga un refresh automático
     event.preventDefault();
 
-    // Empaquetar los datos de los inputs en un objeto
-    const datosUsuario = {
+    const password = document.getElementById("inputPassword").value;
+    const confirmPassword = document.getElementById("inputConfirmPassword").value;
+    const peticionRegistro = {
         name: document.getElementById("inputNombre").value,
         email: document.getElementById("inputCorreo").value,
         number: document.getElementById("inputNumero").value,
-        password: document.getElementById("inputPassword").value,
-        confirm_password: document.getElementById("inputConfirmPassword").value
+        password,
+        confirm_password: confirmPassword
     };
 
-    // Seleccionamos el div donde mostraremos el mensaje
     const alerta = document.getElementById("mensajeAlerta");
 
     try {
-        // Hacer la petición POST a tu API usando fetch
-        const respuesta = await fetch("http://localhost:8080/api/Api_Sign_Up", {
+        const respuesta = await fetch(event.currentTarget.action, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json" 
             },
-            body: JSON.stringify(datosUsuario) 
+            body: JSON.stringify(peticionRegistro)
         });
 
-        // Leer la respuesta JSON enviada por Java
         const resultado = await respuesta.json();
 
-        // Mostrar la alerta dependiendo del código de estado HTTP
         alerta.classList.remove("d-none", "alert-danger", "alert-success");
 
-        if (respuesta.ok) { // Éxito (200 o 201)
+        if (respuesta.ok) {
             alerta.classList.add("alert-success");
             alerta.innerText = resultado.mensaje;
             
-            // Limpiar el formulario y redirigir
             document.getElementById("registroForm").reset();
+            // Abre el inicio de sesión tras mostrar la confirmación del registro.
             setTimeout(() => window.location.href = "login.jsp", 2000);
 
-        } else { // Errores de validación o base de datos (400, 500)
+        } else {
             alerta.classList.add("alert-danger");
             alerta.innerText = resultado.error;
         }
 
-    } catch (error) {
+    } catch {
         alerta.classList.remove("d-none");
         alerta.classList.add("alert-danger");
         alerta.innerText = "Error de conexión con el servidor.";
-        console.error(error);
     }
 });

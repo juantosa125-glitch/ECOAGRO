@@ -13,6 +13,13 @@
     </properties>
     
     <dependencies>
+        <!-- Tomcat carga bcrypt y bytes desde WEB-INF/lib en el despliegue manual. -->
+        <dependency>
+            <groupId>at.favre.lib</groupId>
+            <artifactId>bcrypt</artifactId>
+            <version>0.10.2</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
@@ -31,6 +38,7 @@
         </dependency>
     </dependencies>
     
+    <!-- Compila para Java 17 y empaqueta la aplicación web como WAR. -->
     <build>
         <plugins>
             <plugin>
